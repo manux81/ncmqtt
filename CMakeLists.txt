@@ -30,7 +30,6 @@ project(ncmqtt C ASM)
 
 set(SOURCE_FILES
     src/main.c
-    src/xtea.c
 )
 
 set(CMAKE_C_STANDARD 11)
