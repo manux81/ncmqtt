@@ -28,6 +28,13 @@ endfunction()
 
 project(ncmqtt C ASM)
 
+execute_process(
+	COMMAND gcc --dumpmachine
+	OUTPUT_VARIABLE GCC_TARGET
+	OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+
 set(SOURCE_FILES
     src/main.c
 )
@@ -46,7 +53,8 @@ endif()
 
 
 if (NOT PAHO_MQTT_DIR)
-    find_package(PahoMqtt REQUIRED)
+    set(CMAKE_MODULE_PATH "/usr/lib/${GCC_TARGET}/cmake;${CMAKE_MODULE_PATH}")
+    find_package(eclipse-paho-mqtt-c REQUIRED)
 else()
     # Imposta la variabile PAHO_MQTT_INCLUDE_DIR manualmente
     set(PAHO_MQTT_INCLUDE_DIR "${PAHO_MQTT_DIR}/src")
@@ -75,6 +83,9 @@ add_custom_target(version_header DEPENDS ${VERSION_HEADER})
 version_header(ncmqtt PRIVATE)
 
 # Link al percorso delle librerie Paho MQTT
-
-target_link_libraries(ncmqtt PRIVATE ${PAHO_MQTT_LIBRARIES} util m)
+if (NOT PAHO_MQTT_DIR)
+   target_link_libraries(ncmqtt PRIVATE paho-mqtt3c util m)
+else()
+   target_link_libraries(ncmqtt PRIVATE ${PAHO_MQTT_LIBRARIES} util m)
+endif()
 
