@@ -40,24 +40,40 @@ To build the `ncmqtt` project, follow these steps:
     - You can set the path to the Paho MQTT library using the `PAHO_MQTT_DIR` variable when configuring the project with CMake.
     - If `PAHO_MQTT_DIR` is not set, CMake will attempt to find the Paho MQTT library using the `find_package` command.
 
-3. **Build the Project**:
 
-    A. Build with `PAHO_MQTT_DIR` set.
-    ```sh
-    mkdir build
-    cd build
-    cmake -DPAHO_MQTT_DIR=/path/to/paho.mqtt.c ..
-    make
-    ```
+### Build the Project
 
-    B. Build without `PAHO_MQTT_DIR` not set.
-    ```sh
-    mkdir build
-    cd build
-    cmake ..
-    make
-    ```
+#### A. Build with `PAHO_MQTT_DIR` set:
 
+1. Create and navigate to the `build` directory:
+   ```sh
+   mkdir build
+   cd build
+   ```
+2. Run `cmake` with the `PAHO_MQTT_DIR` set to the path of your Paho MQTT C library:
+   ```sh
+   cmake -DPAHO_MQTT_DIR=/path/to/paho.mqtt.c ..
+   ```
+3. Build the project:
+   ```sh
+   make
+   ```
+
+#### B. Build without `PAHO_MQTT_DIR` set:
+
+1. Create and navigate to the `build` directory:
+   ```sh
+   mkdir build
+   cd build
+   ```
+2. Run `cmake` without setting the `PAHO_MQTT_DIR`:
+   ```sh
+   cmake ..
+   ```
+3. Build the project:
+   ```sh
+   make
+   ```
 
 ## Usage
 
