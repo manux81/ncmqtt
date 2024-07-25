@@ -42,12 +42,22 @@ To build the `ncmqtt` project, follow these steps:
 
 3. **Build the Project**:
 
+    A. Build with `PAHO_MQTT_DIR` set.
     ```sh
     mkdir build
     cd build
     cmake -DPAHO_MQTT_DIR=/path/to/paho.mqtt.c ..
     make
     ```
+
+    B. Build without `PAHO_MQTT_DIR` not set.
+    ```sh
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ```
+
 
 ## Usage
 
